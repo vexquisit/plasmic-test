@@ -12,3 +12,7 @@
   font-size: 32px;
   padding: 32px;
 }
+._switch:global(.__wab_instance) {
+  position: relative;
+  align-self: auto;
+}

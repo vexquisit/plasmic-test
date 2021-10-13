@@ -33,6 +33,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Switch from "../../Switch"; // plasmic-import: vaAb2KfNfNw/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
@@ -52,6 +53,7 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   text?: p.Flex<"div">;
+  _switch?: p.Flex<typeof Switch>;
 };
 
 export interface DefaultHomepageProps {
@@ -109,6 +111,15 @@ function PlasmicHomepage__RenderFunc(props: {
           >
             {"Hello World Vexquisit :)"}
           </div>
+
+          <Switch
+            data-plasmic-name={"_switch"}
+            data-plasmic-override={overrides._switch}
+            className={classNames("__wab_instance", sty._switch)}
+            defaultChecked={"isChecked" as const}
+          >
+            {"Activate"}
+          </Switch>
         </div>
       </div>
     </React.Fragment>
@@ -116,8 +127,9 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root", "text", "_switch"],
+  text: ["text"],
+  _switch: ["_switch"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -125,6 +137,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   text: "div";
+  _switch: typeof Switch;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -189,6 +202,7 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     text: makeNodeComponent("text"),
+    _switch: makeNodeComponent("_switch"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
